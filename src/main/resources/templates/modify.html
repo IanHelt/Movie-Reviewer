@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" th:href="@{'/webjars/bootstrap/3.3.7-1/css/bootstrap.css'}"/>
+    <title>Modify</title>
+</head>
+<body>
+<div class="container">
+<h1 class="col-lg-offset-4" th:text="'Modify a Movie'"></h1>
+
+    <form th:action="@{'/modify/' + ${movie.id}}" method="post" th:object="${movie}">
+        <input type="text" th:field="*{title}"/>
+        <br/>
+        <input type="text" th:field="*{genre}"/>
+        <br/>
+        <input type="text" th:field="*{imdb}"/>
+        <br/>
+        <input type="text" th:field="*{release}"/>
+        <br/>
+        <input type="submit" value="Update"/>
+    </form>
+
+</div>
+<script type="application/javascript"
+        th:src="@{'/webjars/jquery/1.11.1/jquery.js'}"></script>
+<script type="application/javascript"
+        th:src="@{'/webjars/bootstrap/3.3.7-1/js/bootstrap.js'}"></script>
+</body>
+</html>

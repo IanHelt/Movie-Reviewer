@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" th:href="@{'/webjars/bootstrap/3.3.7-1/css/bootstrap.css'}"/>
+    <title>Reviews</title>
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <form class="navbar-link" th:action="@{'/toAdd'}" method="post" style="display: inline-block;">
+                    <button type="submit">Add a Movie</button>
+                </form>
+                <form class="navbar-link" th:action="@{'/toIndex'}" method="post" style="display: inline-block;">
+                    <button type="submit">Index</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+<h1 class="col-lg-offset-4" th:text="'Reviews for ' + ${movie.title}"></h1>
+    <h4 class="col-lg-offset-4" th:text="'Average score: ' + ${movie.avgScore()} + '/5'"></h4>
+    <div class="row">
+    <h5 class="col-lg-2 col-lg-offset-3">Rate this Movie</h5>
+    <form class="col-lg-7" th:action="@{'/addReview/' + ${movie.id}}" method="post">
+        <input name="reviewer" type="text" th:placeholder="'Your Name'"/>
+        <select name="rating" id="">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <button type="submit" >Submit</button>
+    </form>
+    </div>
+    <ul th:each="review : ${movie.reviews}" class="col-lg-4">
+
+        <li th:text="${review.reviewer}" ></li>
+        <li th:text="${review.rating} + '/5'" ></li>
+
+    </ul>
+
+</div>
+<script type="application/javascript"
+        th:src="@{'/webjars/jquery/1.11.1/jquery.js'}"></script>
+<script type="application/javascript"
+        th:src="@{'/webjars/bootstrap/3.3.7-1/js/bootstrap.js'}"></script>
+</body>
+</html>

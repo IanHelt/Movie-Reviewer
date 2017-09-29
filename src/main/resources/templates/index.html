@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" th:href="@{'https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/journal/bootstrap.min.css'}"/>
+    <link rel="stylesheet" th:href="@{'assets/app.css'}"/>
+    <title>Movie Index</title>
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <form class="navbar-link" th:action="@{'/toAdd'}" method="post" style="display: inline-block;">
+                    <button type="submit">Add a Movie</button>
+                </form>
+                <form class="navbar-link" th:action="@{'/toReviews'}" method="post" style="display: inline-block;">
+                    <button type="submit">View Reviews</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <h1 class="col-lg-offset-4" th:text="'Movies'"></h1>
+    <div th:each="movie : ${allMovies}" class="col-lg-4">
+        <ul>
+            <h3 th:text="${movie.title}"></h3>
+            <li th:text="${movie.genre}"></li>
+            <li><a th:href="${movie.imdb}" th:text="'IMDB'"></a></li>
+            <li th:text="${movie.release}"></li>
+            <form class="modifyButton" th:action="@{'/modify/' + ${movie.id}}" method="get">
+                <button type="submit" >Modify Info</button>
+            </form>
+            <form class="reviewButton" th:action="@{'/reviews/' + ${movie.id}}" method="get">
+                <button type="submit" >See Reviews</button>
+            </form>
+        </ul>
+    </div>
+</div>
+<script type="application/javascript"
+        th:src="@{'/webjars/jquery/1.11.1/jquery.js'}"></script>
+<script type="application/javascript"
+        th:src="@{'/webjars/bootstrap/3.3.7-1/js/bootstrap.js'}"></script>
+</body>
+</html>

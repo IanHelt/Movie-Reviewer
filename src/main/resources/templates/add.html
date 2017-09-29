@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" th:href="@{'/webjars/bootstrap/3.3.7-1/css/bootstrap.css'}"/>
+    <title>Add</title>
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <form class="navbar-link" th:action="@{'/toIndex'}" method="post" style="display: inline-block;">
+                    <button type="submit">Index</button>
+                </form>
+                <form class="navbar-link" th:action="@{'/toReviews'}" method="post" style="display: inline-block;">
+                    <button type="submit">View Reviews</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <h1 class="col-offset-4" th:text="'Add a Movie'"></h1>
+<form th:action="@{'/newMovie/'}" th:object="${movie}" method="post">
+    <input type="text" th:field="*{title}" th:placeholder="'Title'" />
+    <br />
+    <input type="text" th:field="*{genre}" th:placeholder="'Genre'" />
+    <br />
+    <input type="text" th:field="*{imdb}" th:placeholder="'IMDB Link'" />
+    <br />
+    <input type="text" th:field="*{release}" th:placeholder="'Date of Release'" />
+    <br />
+    <input type="submit" value="Submit"/>
+</form>
+</div>
+<script type="application/javascript"
+        th:src="@{'/webjars/jquery/1.11.1/jquery.js'}"></script>
+<script type="application/javascript"
+        th:src="@{'/webjars/bootstrap/3.3.7-1/js/bootstrap.js'}"></script>
+</body>
+</html>
