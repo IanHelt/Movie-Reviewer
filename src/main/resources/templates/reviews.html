@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" th:href="@{'/webjars/bootstrap/3.3.7-1/css/bootstrap.css'}"/>
+    <link rel="stylesheet" th:href="@{'../assets/app.css'}"/>
     <title>Reviews</title>
 </head>
 <body>
 <div class="container">
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
                 <form class="navbar-link" th:action="@{'/toAdd'}" method="post" style="display: inline-block;">
@@ -15,6 +16,10 @@
                 </form>
                 <form class="navbar-link" th:action="@{'/toIndex'}" method="post" style="display: inline-block;">
                     <button type="submit">Index</button>
+                </form>
+                <form class="navbar-link" action="/logout" method="post" style="display: inline-block;">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                    <input type="submit" value="Logout" />
                 </form>
             </div>
         </div>
@@ -24,7 +29,7 @@
     <div class="row">
     <h5 class="col-lg-2 col-lg-offset-3">Rate this Movie</h5>
     <form class="col-lg-7" th:action="@{'/addReview/' + ${movie.id}}" method="post">
-        <input name="reviewer" type="text" th:placeholder="'Your Name'"/>
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
         <select name="rating" id="">
             <option value="1">1</option>
             <option value="2">2</option>

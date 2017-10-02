@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" th:href="@{'/webjars/bootstrap/3.3.7-1/css/bootstrap.css'}"/>
+    <link rel="stylesheet" th:href="@{'../assets/app.css'}"/>
     <title>Add</title>
 </head>
 <body>
@@ -11,16 +12,19 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <form class="navbar-link" th:action="@{'/toIndex'}" method="post" style="display: inline-block;">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                     <button type="submit">Index</button>
                 </form>
-                <form class="navbar-link" th:action="@{'/toReviews'}" method="post" style="display: inline-block;">
-                    <button type="submit">View Reviews</button>
+                <form class="navbar-link" action="/logout" method="post" style="display: inline-block;">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                    <input type="submit" value="Logout" />
                 </form>
             </div>
         </div>
     </nav>
     <h1 class="col-offset-4" th:text="'Add a Movie'"></h1>
 <form th:action="@{'/newMovie/'}" th:object="${movie}" method="post">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
     <input type="text" th:field="*{title}" th:placeholder="'Title'" />
     <br />
     <input type="text" th:field="*{genre}" th:placeholder="'Genre'" />

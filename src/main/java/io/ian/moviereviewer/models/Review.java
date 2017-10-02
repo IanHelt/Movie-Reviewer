@@ -8,14 +8,26 @@ public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
+
     private String reviewer;
     private int rating;
 
     @ManyToOne
     @JoinColumn(name = "movie_id")
     private Movie movie;
+
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Long getId() {
         return id;
