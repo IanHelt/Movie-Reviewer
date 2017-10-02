@@ -20,4 +20,15 @@ public class LoginController {
         request.getSession().removeAttribute("error");
         return "login";
     }
+
+    @RequestMapping(value = "/login/createSuccess", method = RequestMethod.GET)
+    public String loginFormCreate(Model model,
+                            HttpServletRequest request) {
+        model.addAttribute("user", new User());
+        model.addAttribute("createSuccess", "Account Created Successfully");
+        Object message = request.getSession().getAttribute("error");
+        model.addAttribute("errors", message);
+        request.getSession().removeAttribute("error");
+        return "login";
+    }
 }

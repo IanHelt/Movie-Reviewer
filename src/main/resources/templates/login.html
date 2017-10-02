@@ -6,6 +6,7 @@
 </head>
 <body>
 <div style="color: red;" th:text="${errors}"></div>
+<div style="color: green;" th:text="${createSuccess}"></div>
 <form action="/login" th:object="${user}" method="post">
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
     <label th:for="*{username}">Username</label>
@@ -15,6 +16,10 @@
     <input type="password" th:field="*{password}"/>
     <br />
     <input type="submit"/>
+</form>
+<form action="/signup" method="get">
+    <h5>Don't have an account?</h5>
+    <input type="submit" value="Sign up"/>
 </form>
 </body>
 </html>
