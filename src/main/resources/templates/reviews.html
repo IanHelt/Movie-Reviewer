@@ -36,12 +36,9 @@
     </form>
     </div>
     <ul th:each="review : ${movie.reviews}" class="col-lg-4">
-
         <li th:text="${review.reviewer}" ></li>
         <li th:text="${review.rating} + '/5'" ></li>
-
     </ul>
-
 </div>
 <script type="application/javascript"
         th:src="@{'/webjars/jquery/1.11.1/jquery.js'}"></script>
