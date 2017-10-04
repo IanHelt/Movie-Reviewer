@@ -24,11 +24,20 @@ public class IndexController {
     @RequestMapping(value = "/")
     public String index(Model model,
                         Principal principal){
-        User me = userRepo.findByUsername(principal.getName());
-        model.addAttribute("movie", new Movie());
-        model.addAttribute("allMovies", movieRepo.findAll());
-        return "index";
+        try {
+            User me = userRepo.findByUsername(principal.getName());
+            model.addAttribute("movie", new Movie());
+            model.addAttribute("allMovies", movieRepo.findAll());
+            return "index";
+        } catch (NullPointerException Exception) {
+            model.addAttribute("movie", new Movie());
+            model.addAttribute("allMovies", movieRepo.findAll());
+            return "index";
+        }
     }
+
+    // These /to requests acted as middleware before I restructured the
+    // project to not need them
 
     @RequestMapping(value = "/toAdd", method = RequestMethod.POST)
     public String toAdd(){

@@ -29,10 +29,16 @@ public class ReviewsController {
     public String modify(Model model,
                          @PathVariable("id") Long id,
                          Principal principal){
-        User me = userRepo.findByUsername(principal.getName());
-        Movie toReview = movieRepo.findOne(id);
-        model.addAttribute("movie", toReview);
-        return "reviews";
+        try {
+            User me = userRepo.findByUsername(principal.getName());
+            Movie toReview = movieRepo.findOne(id);
+            model.addAttribute("movie", toReview);
+            return "reviews";
+        } catch (NullPointerException Exception) {
+            Movie toReview = movieRepo.findOne(id);
+            model.addAttribute("movie", toReview);
+            return "reviews";
+        }
     }
 
     @RequestMapping(value = "/addReview/{id}", method = RequestMethod.POST)
