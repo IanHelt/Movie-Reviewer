@@ -20,7 +20,9 @@ public class Movie {
     private List<Review> reviews;
 
     public Double avgScore() {
-
+        if (Double.valueOf(this.reviews.size()) == 0) {
+            return 0.0;
+        }
         Double reviewCount = Double.valueOf(this.reviews.size());
         Double total = 0.0;
         for (Review review : this.reviews) {
